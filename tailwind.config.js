@@ -6,6 +6,7 @@ export default {
     "./src/components/Footer.jsx",
     "./src/components/Hero.jsx",
     "./src/components/Featured.jsx",
+    "./src/components/Cards.jsx",
   ],
   theme: {
     extend: {

@@ -80,7 +80,7 @@ const Footer = () => {
 
   return (
     <footer className="bg-[#0c0c0c] text-white bottom-0 w-full max-w-[1244px] mx-auto left-0 right-0 border-t-2 border-t-primary">
-      <div className="md:flex md:justify-between md:items-center sm:px-12 px-4 py-7 border-b-accent border-b-[1px] flex-col md:flex-row">
+      <div className="md:justify-center md:items-center sm:px-12 px-4 py-7 border-b-accent border-b-[1px] flex-col md:flex-row">
         <div className="flex flex-col sm:flex-row md:flex-col lg:flex-row md:items-center w-full md:w-auto items-center justify-between">
           <h1 className="text-accent lg:text-3xl text-3xl md:mb-0 mb-6 lg:leading-normal font-semibold w-full md:w-64">
             Interested? <br />
