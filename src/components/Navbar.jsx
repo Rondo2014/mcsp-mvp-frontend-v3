@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import CloseIcon from "@mui/icons-material/Close";
 import MenuIcon from "@mui/icons-material/Menu";
+import { NAVLINKS } from "./utils/Menu";
 
 const LoginButton = (props) => {
   return (
@@ -11,12 +12,6 @@ const LoginButton = (props) => {
 };
 
 function Navbar() {
-  let Links = [
-    { name: "Home", href: "#" },
-    { name: "Trainers", href: "#" },
-    { name: "Locations", href: "#" },
-    { name: "Mission", href: "#" },
-  ];
   let [open, setOpen] = useState(false);
   let [scrolled, setScrolled] = useState(false);
   
@@ -29,7 +24,6 @@ function Navbar() {
       const scrollY = window.scrollY
       if (scrollY > 1) {
         setScrolled(true);
-        console.log(scrollY);
       } else {
         setScrolled(false);
       }
@@ -41,9 +35,10 @@ function Navbar() {
       window.removeEventListener('scroll', handleScroll);
     };
   }, []);
+  
   const Logo = () => {
     return (
-      <img className={`transition-all duration-300 ease-in-out ${scrolled ? 'h-10' : 'h-24'}`} src="src/assets/pngaaa.com-4630430.png" alt="logo" />
+      <img className={`${scrolled ? 'h-10' : 'h-24'} transition-all duration-500 ease-in-out`} src="src/assets/pngaaa.com-4630430.png" alt="logo" />
     );
   };
   
@@ -66,7 +61,7 @@ function Navbar() {
             open ? "top-36" : "top-[-490px] md:opacity-100 opacity-0"
           }`}
         >
-          {Links.map((link) => (
+          {NAVLINKS.map((link) => (
             <li key={link.name} className="text-xl md:ml-8 md:my-0 my-7">
               <a
                 href={link.href}

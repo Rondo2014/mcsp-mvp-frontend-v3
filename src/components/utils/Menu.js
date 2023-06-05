@@ -38,3 +38,9 @@ export const EQUIPMENT = [
   { name: "Basketball", text: "Shoot some hoops with your friends or join a pickup game in our basketball courts", image: "https://i.pinimg.com/736x/96/e3/73/96e3730e5116c5e5147d92085acce517--basketball-court-interactive-design.jpg" },
   { name: "Tanning", text: "Get a healthy glow by adding a tanning package to your membership", image: "https://img1.wsimg.com/isteam/ip/6296b914-a55a-4514-88bd-771d3061fe40/B%26B.jpg" },
 ]
+export const NAVLINKS = [
+  { name: "Home", href: "#" },
+  { name: "Trainers", href: "#" },
+  { name: "Locations", href: "#" },
+  { name: "Mission", href: "#" },
+];

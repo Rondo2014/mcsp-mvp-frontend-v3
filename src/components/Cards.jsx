@@ -6,7 +6,7 @@ const Cards = () => {
   return (
     <div className='w-full py-[10rem] px-4'>
         <div className='max-w-[1244px] mx-auto grid md:grid-cols-3 gap-8'>
-            <div className='w-full shadow-xl shadow-secondary hover:shadow-accent hover:shadow-2xl hover:scale-105 flex flex-col p-4 my-4 rounded-lg transition-all duration-500 ease-in-out'>
+            <div className='w-full shadow-xl shadow-secondary hover:shadow-accent hover:shadow-2xl hover:scale-105 flex flex-col p-4 my-4 rounded-lg transition-all duration-500 ease-in-out bg-[#0c0c0c]'>
  
                 <MoneyOff style={{ fontSize: '48px', display: 'block' }} className='text-accent mx-auto mt-[-1.5rem]' />
                 <Reveal>
@@ -28,7 +28,7 @@ const Cards = () => {
                     </div>
                     <button className="bg-accent text-white w-[200px] py-4 my-6 mx-auto rounded-lg  hover:bg-accent-dark hover:text-lg transition-all ease-in"> Start Free Trial</button>
             </div>
-            <div className='w-full shadow-xl shadow-secondary hover:shadow-accent hover:shadow-2xl hover:scale-105 flex flex-col p-4 my-4 rounded-lg transition-all duration-500 ease-in-out'>
+            <div className='w-full shadow-xl shadow-secondary hover:shadow-accent hover:shadow-2xl hover:scale-105 flex flex-col p-4 my-4 rounded-lg transition-all duration-500 ease-in-out bg-[#0c0c0c]'>
                 <AttachMoneyOutlined style={{ fontSize: '48px', display: 'block' }} className='text-accent mx-auto mt-[-1.5rem]' />
                 <Reveal>
                 <h2 className='text-white text-2xl font-bold text-center py-8'>Monthly</h2>
@@ -49,7 +49,7 @@ const Cards = () => {
                     </div>
                     <button className="bg-accent text-white w-[200px] py-4 my-6 mx-auto rounded-lg  hover:bg-accent-dark hover:text-lg transition-all ease-in"> Start Free Trial</button>
             </div>
-            <div className='w-full shadow-xl shadow-secondary hover:shadow-accent hover:shadow-2xl hover:scale-105 flex flex-col p-4 my-4 rounded-lg transition-all duration-500 ease-in-out'>
+            <div className='w-full shadow-xl shadow-secondary hover:shadow-accent hover:shadow-2xl hover:scale-105 flex flex-col p-4 my-4 rounded-lg transition-all duration-500 ease-in-out bg-[#0c0c0c]'>
                 <FitnessCenter style={{ fontSize: '48px', display: 'block' }} className='text-accent mx-auto mt-[-1.5rem]' />
                 <Reveal>
                 <h2 className='text-white text-2xl font-bold text-center py-8'>Annual</h2>

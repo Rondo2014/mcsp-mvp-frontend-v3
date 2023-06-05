@@ -2,7 +2,7 @@
 export default {
   content: [ './src/**/*.{js,jsx,ts,tsx}',
   './src/main.jsx',
-  '.src/components/utils/Reveal.jsx',
+  '.src/components/utils/*.{js,jsx,ts,tsx}',
   ],
   theme: {
     fontFamily: {

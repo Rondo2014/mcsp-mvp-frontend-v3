@@ -4,7 +4,7 @@ import { Reveal } from "./utils/Reveal";
 
 const Hero = () => {
   return (
-    <div className="text-white">
+    <div className="text-white bg-[#0c0c0c]">
       <div className="max-w-[800px] mt-24 w-full h-screen mx-auto text-center flex flex-col">
         <p className="text-accent font-bold p-2">FOCUS ON YOU</p>
         <Reveal>
