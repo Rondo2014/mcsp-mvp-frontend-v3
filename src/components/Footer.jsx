@@ -1,4 +1,4 @@
-import { SUPPORT, COMPANY, RESOURCES } from "./Menu.js";
+import { SUPPORT, COMPANY, RESOURCES } from "./utils/Menu.js";
 import {
   Facebook,
   Twitter,
@@ -9,6 +9,7 @@ import {
   KeyboardDoubleArrowUp,
 } from "@mui/icons-material";
 import { useState } from "react";
+import { Reveal } from "./utils/Reveal.jsx";
 
 const Icons = [
   { name: "Facebook", icon: <Facebook />, className: "facebook-icon" },
@@ -32,8 +33,8 @@ const Icon = () => {
     <ul className="flex">
       {Icons.map((icon) => (
         <li
-          key={icon.name}
-          className="px-2 hover:text-text hover:text-sm transition-all ease-in-out duration-200"
+        key={icon.name}
+        className="px-2 hover:text-text hover:text-sm transition-all ease-in-out duration-200"
         >
           <a href={icon.link} className={icon.className}>
             {icon.icon}
@@ -50,12 +51,14 @@ const Item = ({ Links, title }) => {
       <h1 className="mb-1 font-semibold">{title}</h1>
       {Links.map((link) => (
         <li key={link.name}>
+          <Reveal>
           <a
             className="text-gray-400 hover:text-text text-sm cursor-pointer leading-6"
             href={link.link}
           >
             {link.name}
           </a>
+        </Reveal>
         </li>
       ))}
     </ul>
@@ -82,20 +85,27 @@ const Footer = () => {
     <footer className="bg-[#0c0c0c] text-white bottom-0 w-full max-w-[1244px] mx-auto left-0 right-0 border-t-2 border-t-primary">
       <div className="md:justify-center md:items-center sm:px-12 px-4 py-7 border-b-accent border-b-[1px] flex-col md:flex-row">
         <div className="flex flex-col sm:flex-row md:flex-col lg:flex-row md:items-center w-full md:w-auto items-center justify-between">
+          <Reveal>
           <h1 className="text-accent lg:text-3xl text-3xl md:mb-0 mb-6 lg:leading-normal font-semibold w-full md:w-64">
             Interested? <br />
             <p className="text-white text-sm leading-7">For health tips and advice, as well as discounts and promotions, join our mailing list!</p>
           </h1>
+            </Reveal>
           <div className="flex flex-col md:flex-row m-auto p-6">
+            <Reveal>
           <input
             placeholder="Enter your email . . ."
             type="email"
             className="text-primary font-medium placeholder:text-secondary placeholder:text-opacity-60 rounded-md w-full sm:w-auto md:w-64 h-10 px-4 focus:outline-accent mb-6 md:mb-0 bg-gray-400 md:ml-10 p-3 flex mr-4"
           />
+          </Reveal>
+          <Reveal>
           <button className="bg-accent text-white md:font-large font-small w-[200px] h-10 rounded-md md:w-[150px] m-auto">Notify Me</button>
+          </Reveal>
           </div>  
         </div>
         </div>
+          <Reveal>
         <div className="flex justify-center">
           <Icon />
           <div
@@ -103,12 +113,13 @@ const Footer = () => {
             onClick={toggleItems}
           >
             {showItems ? (
-              <KeyboardDoubleArrowDown fontSize="large" />
-            ) : (
               <KeyboardDoubleArrowUp fontSize="large" />
+            ) : (
+              <KeyboardDoubleArrowDown fontSize="large" />
             )}
           </div>
       </div>
+          </Reveal>
       {showItems && <ItemsContainer />}
       <div className="text-center pt-2 text-gray-400 text-sm pb-8 border-t-[1px] border-t-accent">
         <span>2023 Globo Gym. All rights reserved</span>

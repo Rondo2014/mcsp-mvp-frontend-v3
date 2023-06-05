@@ -1,14 +1,14 @@
 /** @type {import('tailwindcss').Config} */
 export default {
-  content: [
-    "./index.html",
-    "./src/components/Navbar.jsx",
-    "./src/components/Footer.jsx",
-    "./src/components/Hero.jsx",
-    "./src/components/Featured.jsx",
-    "./src/components/Cards.jsx",
+  content: [ './src/**/*.{js,jsx,ts,tsx}',
+  './src/main.jsx',
+  '.src/components/utils/Reveal.jsx',
   ],
   theme: {
+    fontFamily: {
+      primary: 'Open Sans',
+      secondary: 'Roboto',
+    },
     extend: {
       colors: {
         primary: "#231942",

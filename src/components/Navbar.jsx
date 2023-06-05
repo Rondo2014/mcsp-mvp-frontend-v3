@@ -1,12 +1,7 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import CloseIcon from "@mui/icons-material/Close";
 import MenuIcon from "@mui/icons-material/Menu";
 
-const Logo = () => {
-  return (
-    <img className="h-24" src="src/assets/pngaaa.com-4630430.png" alt="logo" />
-  );
-};
 const LoginButton = (props) => {
   return (
     <button className="bg-accent-dark text-white py-2 px-6 rounded-lg md:ml-8 hover:bg-text hover:text-lg transition-all ease-in ml-7">
@@ -23,15 +18,39 @@ function Navbar() {
     { name: "Mission", href: "#" },
   ];
   let [open, setOpen] = useState(false);
-
+  let [scrolled, setScrolled] = useState(false);
+  
   const toggleMenu = () => {
     setOpen(!open);
   };
-
+  
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollY = window.scrollY
+      if (scrollY > 1) {
+        setScrolled(true);
+        console.log(scrollY);
+      } else {
+        setScrolled(false);
+      }
+    };
+    
+    window.addEventListener('scroll', handleScroll);
+    
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
+  const Logo = () => {
+    return (
+      <img className={`transition-all duration-300 ease-in-out ${scrolled ? 'h-10' : 'h-24'}`} src="src/assets/pngaaa.com-4630430.png" alt="logo" />
+    );
+  };
+  
   return (
-    <div className="shadow-md w-full max-w-[1244px] mx-auto border-b-2 border-b-primary">
+    <div className="shadow-md w-full max-w-[1244px] mx-auto border-b-2 border-b-primary sticky top-0 z-50">
       <div className="md:flex items-center justify-between bg-[#0c0c0c] py-4 md:px-10 px-7">
-        <Logo />
+      <Logo/>
         <div
           className="absolute right-8 top-6 cursor-pointer md:hidden"
           onClick={toggleMenu}
