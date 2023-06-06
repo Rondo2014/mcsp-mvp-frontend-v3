@@ -39,8 +39,9 @@ export const EQUIPMENT = [
   { name: "Tanning", text: "Get a healthy glow by adding a tanning package to your membership", image: "https://img1.wsimg.com/isteam/ip/6296b914-a55a-4514-88bd-771d3061fe40/B%26B.jpg" },
 ]
 export const NAVLINKS = [
-  { name: "Home", href: "#" },
-  { name: "Trainers", href: "#" },
-  { name: "Locations", href: "#" },
-  { name: "Mission", href: "#" },
+  { name: "Home", page: "/" },
+  { name: "Trainers", page: "#" },
+  { name: "Locations", page: "#" },
+  { name: "Mission", page: "#" },
+  { name: "Profile", page: "/profile" },
 ];

@@ -2,6 +2,8 @@ import { useState, useEffect } from "react";
 import CloseIcon from "@mui/icons-material/Close";
 import MenuIcon from "@mui/icons-material/Menu";
 import { NAVLINKS } from "./utils/Menu";
+import { Link } from "react-router-dom";
+import logo from "../assets/logo.png";
 
 const LoginButton = (props) => {
   return (
@@ -38,7 +40,7 @@ function Navbar() {
   
   const Logo = () => {
     return (
-      <img className={`${scrolled ? 'h-10' : 'h-24'} transition-all duration-500 ease-in-out`} src="./src/assets/logo.png" alt="logo" />
+      <img className={`${scrolled ? 'h-10' : 'h-24'} transition-all duration-500 ease-in-out`} src={logo} alt="logo" />
     );
   };
   
@@ -63,12 +65,12 @@ function Navbar() {
         >
           {NAVLINKS.map((link) => (
             <li key={link.name} className="text-xl md:ml-8 md:my-0 my-7">
-              <a
-                href={link.href}
+              <Link
+                to={link.page}
                 className="text-white hover:text-text transition-all ease-in"
               >
                 {link.name}
-              </a>
+              </Link>
             </li>
           ))}
           <div className="w-2 bg-black"></div>
