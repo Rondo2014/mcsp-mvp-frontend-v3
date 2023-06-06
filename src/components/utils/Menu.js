@@ -42,6 +42,10 @@ export const NAVLINKS = [
   { name: "Home", page: "/" },
   { name: "Trainers", page: "#" },
   { name: "Locations", page: "#" },
-  { name: "Mission", page: "#" },
+  { name: "Profile", page: "/profile" },
+];
+
+export const AUTHLINKS = [
+  { name: "Home", page: "/" },
   { name: "Profile", page: "/profile" },
 ];

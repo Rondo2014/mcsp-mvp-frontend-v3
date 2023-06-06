@@ -91,18 +91,16 @@ const Footer = () => {
             <p className="text-white text-sm leading-7">For health tips and advice, as well as discounts and promotions, join our mailing list!</p>
           </h1>
             </Reveal>
-          <div className="flex flex-col md:flex-row m-auto p-6">
             <Reveal>
+          <div className="flex flex-col md:flex-row m-auto p-6">
           <input
             placeholder="Enter your email . . ."
             type="email"
             className="text-primary font-medium placeholder:text-secondary placeholder:text-opacity-60 rounded-md w-full sm:w-auto md:w-64 h-10 px-4 focus:outline-accent mb-6 md:mb-0 bg-gray-400 md:ml-10 p-3 flex mr-4"
           />
-          </Reveal>
-          <Reveal>
           <button className="bg-accent text-white md:font-large font-small w-[200px] h-10 rounded-md md:w-[150px] m-auto">Notify Me</button>
-          </Reveal>
           </div>  
+          </Reveal>
         </div>
         </div>
           <Reveal>
