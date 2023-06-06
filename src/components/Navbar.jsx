@@ -38,7 +38,7 @@ function Navbar() {
   
   const Logo = () => {
     return (
-      <img className={`${scrolled ? 'h-10' : 'h-24'} transition-all duration-500 ease-in-out`} src="src/assets/pngaaa.com-4630430.png" alt="logo" />
+      <img className={`${scrolled ? 'h-10' : 'h-24'} transition-all duration-500 ease-in-out`} src="./assets/logo.png" alt="logo" />
     );
   };
   
