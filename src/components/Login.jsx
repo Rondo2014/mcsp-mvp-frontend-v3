@@ -96,19 +96,17 @@ const Login = () => {
                   Login
                 </h2>
                 <section>
-                  <Reveal>
-                    <p
-                      ref={errRef}
-                      className={
-                        error
-                          ? "bg-primary text-white font-semibold rounded-lg transition-all duration-500 ease-in-out text-center p-2 my-3"
-                          : "opacity-0 h-0 w-0"
-                      }
-                      aria-live="assertive"
-                    >
-                      {error}
-                    </p>
-                  </Reveal>
+                  <p
+                    ref={errRef}
+                    className={
+                      error
+                        ? "bg-primary text-white font-semibold rounded-lg transition-all duration-500 ease-in-out text-center p-2 my-3"
+                        : "opacity-0 h-0 w-0"
+                    }
+                    aria-live="assertive"
+                  >
+                    {error}
+                  </p>
                 </section>
                 <div className="flex flex-col text-text py-2">
                   <label htmlFor="username">Username:</label>
@@ -129,6 +127,7 @@ const Login = () => {
                     className="rounded-lg bg-transparent mt-2 p-2 border-[1px] border-accent focus:border-accent focus:bg-primary focus:outline-none text-white transition-all duration-300 ease-in"
                     type="password"
                     value={password}
+                    autoComplete="off"
                     onChange={(e) => setPassword(e.target.value)}
                     required
                   ></input>

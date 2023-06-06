@@ -5,10 +5,12 @@ import { AUTHLINKS, NAVLINKS } from "./utils/Menu";
 import { Link } from "react-router-dom";
 import logo from "../assets/logo.png";
 import AuthContext from "../context/AuthProvider";
+import { useNavigate } from "react-router-dom";
 
 function Navbar() {
   const { auth, handleLogout } = useContext(AuthContext);
   const isLoggedIn = auth?.token;
+  const navigate = useNavigate();
 
   let [open, setOpen] = useState(false);
   let [scrolled, setScrolled] = useState(false);
