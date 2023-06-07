@@ -76,6 +76,6 @@ export const NAVLINKS = [
 ];
 
 export const AUTHLINKS = [
-  { name: "Home", page: "/dashboard" },
+  { name: "Dashboard", page: "/dashboard" },
   { name: "Profile", page: "/profile" },
 ];

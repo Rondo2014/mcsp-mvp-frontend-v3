@@ -4,12 +4,11 @@ import { useState, useRef, useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import AuthContext from "../context/AuthProvider.jsx";
 import axios from "../api/axios.js";
-import { Reveal } from "./utils/Reveal.jsx";
 
 const LOGIN_URL = "/users/login";
 
 const Login = () => {
-  const { setAuth } = useContext(AuthContext);
+  const { setAuth, handleLogin } = useContext(AuthContext);
   const userRef = useRef();
   const errRef = useRef();
 
@@ -31,37 +30,23 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post(
-        LOGIN_URL,
-        JSON.stringify({
-          username,
-          password,
-        }),
-        {
-          headers: { "Content-Type": "application/json" },
-        }
-      );
-      console.log(JSON.stringify(response?.data));
-      const token = response?.data?.token;
-
-      localStorage.setItem("token", token);
-      localStorage.setItem("username", username);
-
-      setAuth({ username, password, token });
-      setUsername("");
-      setPassword("");
-      setSuccess(true);
+      const success = await handleLogin(username, password);
+      if (success) {
+        setSuccess(true);
+      }
     } catch (err) {
+      console.log(err);
       if (!err.response) {
         setError("No response from server");
-      } else if (err.response.status === 401) {
-        setError("Invalid credentials");
       } else if (err.response.status === 400) {
-        setError("Invalid request");
-      } else {
-        setError("Login failed");
+        setError("Invalid username or password");
+      } else if (err.response.status === 401) {
+        setError("Invalid username or password");
+      } else if (err.response.status === 500) {
+        setError("Server error");
+      } else if (err.response.status === 404) {
+        setError("User not found");
       }
-      errRef.current.focus();
     }
   };
 

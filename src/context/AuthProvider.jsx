@@ -43,9 +43,9 @@ export const AuthProvider = ({ children }) => {
       localStorage.setItem("username", username);
 
       setAuth({ token, username });
-      navigate("/dashboard");
+      return true;
     } catch (error) {
-      console.error(error);
+      throw error;
     }
   };
 

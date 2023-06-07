@@ -9,9 +9,10 @@ import Profile from "./Profile";
 import Login from "./Login";
 import Signup from "./Signup";
 import Dashboard from "./Dashboard";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useLocation } from "react-router-dom";
 
 function App() {
+  const location = useLocation();
   return (
     <>
       <Navbar />
