@@ -1,5 +1,6 @@
 import { createContext, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import axios from "../api/axios.js";
 
 const AuthContext = createContext({});
 
@@ -22,8 +23,34 @@ export const AuthProvider = ({ children }) => {
     navigate("/");
   };
 
+  const handleLogin = async (username, password) => {
+    try {
+      console.log("hello");
+      console.log(username, password);
+
+      const response = await axios.post(
+        "/users/login",
+        JSON.stringify({ username, password }),
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      const token = response?.data?.token;
+
+      localStorage.setItem("token", token);
+      localStorage.setItem("username", username);
+
+      setAuth({ token, username });
+      navigate("/dashboard");
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   return (
-    <AuthContext.Provider value={{ auth, setAuth, handleLogout }}>
+    <AuthContext.Provider value={{ auth, setAuth, handleLogout, handleLogin }}>
       {children}
     </AuthContext.Provider>
   );

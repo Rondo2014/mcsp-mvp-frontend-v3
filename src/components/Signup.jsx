@@ -1,8 +1,9 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useContext } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { useNavigate, Link } from "react-router-dom";
 import axios from "../api/axios.js";
+import AuthContext from "../context/AuthProvider.jsx";
 
 const SIGNUP_URL = "/users/signup";
 
@@ -10,6 +11,7 @@ const Signup = () => {
   const navigate = useNavigate();
   const nameRef = useRef();
   const errRef = useRef();
+  const { setAuth, handleLogin } = useContext(AuthContext);
 
   const [selectedDate, setSelectedDate] = useState(null);
   const [name, setName] = useState("");
@@ -41,6 +43,8 @@ const Signup = () => {
       const res = await axios.post(SIGNUP_URL, JSON.stringify(formData), {
         headers: { "Content-Type": "application/json" },
       });
+      setAuth({ username, password });
+      setSuccess(true);
     } catch (err) {
       if (!err.response) {
         setError("No response from server");
@@ -56,12 +60,15 @@ const Signup = () => {
     <>
       {success ? (
         <div className="flex flex-col justify-center items-center h-screen">
-          <h1 className="text-2xl text-text font-bold text-center">
-            Login Success!
+          <h1 className="text-6xl text-white font-bold text-center">
+            Welcome <span className="text-text"> {name} </span>
           </h1>
-          <Link to="/profile" className="text-text text-center underline">
-            Profile
-          </Link>
+          <button
+            className="w-auto text-white bg-secondary p-2 mx-auto rounded-lg mt-4 hover:scale-105 transition-all ease-in-out duration-300"
+            onClick={() => handleLogin(username, password)}
+          >
+            Continue to dashboard
+          </button>
         </div>
       ) : (
         <>
