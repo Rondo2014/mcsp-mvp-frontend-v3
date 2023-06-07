@@ -72,7 +72,7 @@ const Signup = () => {
         </div>
       ) : (
         <>
-          <div className="grid grid-cols-1 sm:grid-cols-2 h-screen w-full max-w-[1244px] mx-auto">
+          <div className="grid grid-cols-1 sm:grid-cols-2 h-screen w-full max-w-[1244px] mx-auto my-20">
             <div className="flex flex-col justify-center">
               <form
                 className="flex flex-col text-white max-w-[500px] w-full mx-auto p-8 rounded-lg  border-[1px] border-accent shadow-lg shadow-accent group focus-within:group-[shadow-primary]:"
