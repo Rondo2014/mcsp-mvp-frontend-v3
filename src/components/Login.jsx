@@ -57,8 +57,8 @@ const Login = () => {
           <h1 className="text-2xl text-text font-bold text-center">
             Login Success!
           </h1>
-          <Link to="/profile" className="text-text text-center underline">
-            Profile
+          <Link to="/dashboard" className="text-text text-center underline">
+            Dashboard
           </Link>
         </div>
       ) : (

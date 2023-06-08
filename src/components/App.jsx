@@ -8,7 +8,7 @@ import Watermark from "./Watermark";
 import Profile from "./Profile";
 import Login from "./Login";
 import Signup from "./Signup";
-import Dashboard from "./Dashboard";
+import Dashboard from "./dashboard/Dashboard";
 import { Routes, Route, useLocation } from "react-router-dom";
 
 function App() {

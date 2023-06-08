@@ -1,0 +1,51 @@
+export const TRACKERMENU = {
+  workout: ["Chest", "Back", "Legs", "Shoulders", "Arms", "Abs", "Cardio"],
+  type: [
+    {
+      name: "Free weights",
+      options: ["barbell", "dumbbell", "kettlebell", "plate"],
+    },
+    {
+      name: "Machine",
+      options: [
+        "cable",
+        "smith",
+        "leg press",
+        "leg curl",
+        "leg extension",
+        "lat pulldown",
+        "seated row",
+        "chest press",
+        "shoulder press",
+        "tricep extension",
+      ],
+    },
+    {
+      name: "Body weight",
+      options: ["pushup", "pullup", "dip", "situp", "crunch", "plank"],
+    },
+    {
+      name: "Cardio",
+      options: [
+        "treadmill",
+        "elliptical",
+        "bike",
+        "stair climber",
+        "rowing machine",
+        "jump rope",
+        "swimming",
+        "hiking",
+        "running",
+        "walking",
+        "other",
+      ],
+    },
+  ],
+  sets: [0],
+  reps: [0],
+  weight: [0],
+  distance: [0],
+  time: [0],
+  calories: [0],
+  notes: [""],
+};
