@@ -3,9 +3,6 @@ import { Link } from "react-router-dom";
 import { useState, useRef, useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import AuthContext from "../context/AuthProvider.jsx";
-import axios from "../api/axios.js";
-
-const LOGIN_URL = "/users/login";
 
 const Login = () => {
   const { setAuth, handleLogin } = useContext(AuthContext);

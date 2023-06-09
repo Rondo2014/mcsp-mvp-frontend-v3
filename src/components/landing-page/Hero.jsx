@@ -1,6 +1,6 @@
 import React from "react";
 import Typed from "react-typed";
-import { Reveal } from "./utils/Reveal";
+import { Reveal } from "../utils/Reveal";
 import { useNavigate } from "react-router-dom";
 
 const Hero = () => {

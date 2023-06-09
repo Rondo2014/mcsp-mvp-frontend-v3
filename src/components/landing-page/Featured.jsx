@@ -1,6 +1,6 @@
 import React from "react";
-import Fitpeople2 from "../assets/Fitpeople2.png";
-import { Reveal } from "./utils/Reveal";
+import Fitpeople2 from "../../assets/Fitpeople2.png";
+import { Reveal } from "../utils/Reveal";
 import { useNavigate } from "react-router-dom";
 
 const Featured = () => {
@@ -16,7 +16,7 @@ const Featured = () => {
           <img
             src={Fitpeople2}
             alt="/"
-            className="w-[400px] mx-auto my-4 bg-[#0c0c0c] rounded-xl shadow-lg shadow-accent px-3 pt-3"
+            className="w-[400px] mx-auto my-4 bg-bg rounded-xl shadow-lg shadow-accent px-3 pt-3"
           />
         </Reveal>
         <div className="flex flex-col justify-center">
