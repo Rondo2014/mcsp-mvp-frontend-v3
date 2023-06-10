@@ -1,4 +1,5 @@
 import React from "react";
+import { motion } from "framer-motion";
 
 const TrackerSubmit = ({ formArray }) => {
   if (!formArray || formArray.length < 2) return null;
@@ -6,7 +7,13 @@ const TrackerSubmit = ({ formArray }) => {
     <div className="w-full max-w-[1244px] grid grid-cols-1 md:grid-cols-4 justify-center py-10">
       {formArray.slice(1).map((item) => {
         return (
-          <div className="border-box w-auto shadow-xl shadow-secondary hover:shadow-accent hover:shadow-2xl hover:scale-105 flex flex-row p-4 my-4 rounded-lg transition-all duration-500 ease-in-out bg-bg-dark m-4">
+          <motion.div
+            animate={{ y: 0, opacity: 1 }}
+            initial={{ y: -50, opacity: 0 }}
+            transition={{ duration: 0.5 }}
+            key={item.id}
+            className="border-box w-auto shadow-xl shadow-secondary hover:shadow-accent hover:shadow-2xl hover:scale-105 flex flex-row p-4 my-4 rounded-lg transition-all duration-500 ease-in-out bg-bg-dark m-4"
+          >
             <div>
               <h1 className="text-accent text-3xl font-bold text-center py-4">
                 {item.workout}
@@ -100,7 +107,7 @@ const TrackerSubmit = ({ formArray }) => {
                 </ul>
               </div>
             </div>
-          </div>
+          </motion.div>
         );
       })}
     </div>

@@ -1,7 +1,27 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { Add } from "@mui/icons-material";
 
-const List = ({ workout }) => {
+const List = ({ workout, formArray, setFormArray }) => {
   console.log(workout);
+
+  const handleAddExercise = (index) => {
+    console.log(index);
+    const newExercise = {
+      workout: workout.workout[index],
+      type: workout.type[index],
+      sets: workout.sets[index],
+      reps: workout.reps[index],
+      weight: workout.weight[index],
+      calories: workout.calories[index],
+      notes: workout.notes[index],
+      date: workout.date[index],
+      time: workout.time[index],
+    };
+    console.log(newExercise);
+    if (formArray.length > 0) {
+      setFormArray([...formArray, newExercise]);
+    }
+  };
 
   return (
     <div>
@@ -10,10 +30,14 @@ const List = ({ workout }) => {
       </h1>
       {workout.type.map((exercise, index) => {
         return (
-          <div key={`exercise-${index}`} className="bg-bg-dark">
+          <div key={`exercise-${index}`} className="bg-bg rounded-lg">
+            <Add
+              className="hover:scale-105 hover:text-text transition-all duration-300 ease-in-out"
+              onClick={() => handleAddExercise(index)}
+            />
             <ul
               key={"workout"}
-              className="group grid grid-cols-2 gap-2 text-white py-3 border-b-2 border-accent hover:bg-accent-dark hover:text-primary transition-all duration-500 ease-in-out my-2 rounded-md bg-bg p-2 cursor-pointer hover:scale-105"
+              className="group grid grid-cols-2 gap-2 text-white pt-0 pb-3 border-b-2 border-accent hover:bg-accent-dark hover:text-primary transition-all duration-500 ease-in-out my-2 rounded-md p-4 cursor-pointer"
             >
               <h1 className="group-hover:text-primary col-span-2 text-xl text-center font-bold text-accent transition-all duration-500 ease-in-out">
                 Target: {workout.workout[index]}

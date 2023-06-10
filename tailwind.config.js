@@ -1,3 +1,5 @@
+import plugin from "tailwindcss";
+
 /** @type {import('tailwindcss').Config} */
 export default {
   content: [
@@ -22,6 +24,18 @@ export default {
         "bg-light": "#353935",
       },
     },
-    plugins: [],
+    plugins: [
+      plugin(function ({ addUtilities }) {
+        addUtilities({
+          ".no-scrollbar::-webkit-scrollbar": {
+            display: "none",
+          },
+          ".no-scrollbar": {
+            "-ms-overflow-style": "none",
+            "scrollbar-width": "none",
+          },
+        });
+      }),
+    ],
   },
 };

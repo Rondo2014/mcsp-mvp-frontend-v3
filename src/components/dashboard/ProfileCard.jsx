@@ -11,7 +11,7 @@ const ProfileCard = ({ profileData }) => {
   const age = currentYear - birthYear;
 
   return (
-    <div className="text-white w-full mx-auto p-10 m-4 border-2 border-accent-dark rounded-lg ml-10 bg-bg-dark md:max-h-[600px]">
+    <div className="text-white w-full mx-auto p-10 m-4 border-2 border-accent-dark rounded-lg ml-12 bg-bg-dark md:max-h-[600px]">
       <div className="flex justify-center mx-auto w-full">
         <img
           src="https://www.vhv.rs/dpng/d/436-4363443_view-user-icon-png-font-awesome-user-circle.png"

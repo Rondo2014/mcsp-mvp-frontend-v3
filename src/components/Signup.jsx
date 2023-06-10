@@ -45,6 +45,7 @@ const Signup = () => {
       });
       setAuth({ username, password });
       setSuccess(true);
+      handleLogin(username, password);
     } catch (err) {
       if (!err.response) {
         setError("No response from server");
@@ -63,12 +64,12 @@ const Signup = () => {
           <h1 className="text-6xl text-white font-bold text-center">
             Welcome <span className="text-text"> {name} </span>
           </h1>
-          <button
+          <Link
             className="w-auto text-white bg-secondary p-2 mx-auto rounded-lg mt-4 hover:scale-105 transition-all ease-in-out duration-300"
-            onClick={() => handleLogin(username, password)}
+            to={"/dashboard"}
           >
             Continue to dashboard
-          </button>
+          </Link>
         </div>
       ) : (
         <>

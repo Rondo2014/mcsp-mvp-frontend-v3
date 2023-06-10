@@ -2,9 +2,18 @@ import React, { useEffect, useState } from "react";
 import axios from "../../api/axios.js";
 import List from "./List.jsx";
 import ProfileCard from "./ProfileCard.jsx";
+import { motion } from "framer-motion";
 
-const Tracker = ({ workoutData, setWorkoutData, profileData }) => {
-  const [workoutClicked, setWorkoutClicked] = useState(null);
+const Tracker = ({
+  workoutData,
+  setWorkoutData,
+  profileData,
+  formArray,
+  setFormArray,
+  previousWorkout,
+  setPreviousWorkout,
+}) => {
+  const [workoutClicked, setWorkoutClicked] = useState(false);
   useEffect(() => {
     axios
       .get("/users/workouts", {
@@ -21,6 +30,10 @@ const Tracker = ({ workoutData, setWorkoutData, profileData }) => {
   }, []);
 
   const handleClick = (id) => {
+    if (workoutClicked === id) {
+      return setWorkoutClicked(false);
+    }
+    setWorkoutClicked(!workoutClicked);
     setWorkoutClicked(id);
   };
 
@@ -29,7 +42,7 @@ const Tracker = ({ workoutData, setWorkoutData, profileData }) => {
   return (
     <div className="w-full max-w-[1244px] flex flex-col md:flex md:flex-row md:flex-grow-1 mx-auto">
       <div className="md:flex md:w-7/12 md:full">
-        <ul className="flex flex-col">
+        <ul className="flex flex-col no-scrollbar overflow-y-auto h-[600px]">
           {workoutData.map((workout, index) => {
             const date = new Date(workout.date[0]);
             const formattedDate = date.toLocaleDateString();
@@ -49,20 +62,33 @@ const Tracker = ({ workoutData, setWorkoutData, profileData }) => {
             );
           })}
         </ul>
-        {workoutClicked !== null && (
-          <div className="w-full text-white ml-5 pl-5 text-left border-l-2 border-secondary">
+        {workoutClicked && (
+          <motion.div
+            animate={{ x: 0, opacity: 1 }}
+            initial={{ x: -150, opacity: 0 }}
+            exit={{ x: -150, opacity: 0, delay: 0.5 }}
+            transition={{ duration: 0.5 }}
+            className="w-full text-white ml-5 pl-5 text-left border-l-2 border-secondary no-scrollbar overflow-y-auto h-[75vh]"
+          >
             {workoutData.map((workout) => {
               if (workout.id === workoutClicked) {
                 return (
                   <>
-                    <List key={workout.id} workout={workout} />
+                    <List
+                      key={workout.id}
+                      workout={workout}
+                      formArray={formArray}
+                      setFormArray={setFormArray}
+                      previousWorkout={previousWorkout}
+                      setPreviousWorkout={setPreviousWorkout}
+                    />
                   </>
                 );
               } else {
                 return null;
               }
             })}
-          </div>
+          </motion.div>
         )}
       </div>
       <ProfileCard profileData={profileData} />

@@ -1,10 +1,16 @@
 import React, { useState, useContext, useRef } from "react";
 import { TRACKERMENU } from "./trackerMenu";
-import AuthContext from "../../context/AuthProvider";
+import axios from "../../api/axios";
 import TrackerSubmit from "./TrackerSubmit";
 import { Close, Done } from "@mui/icons-material";
 
-const TrackerInput = ({ profileData }) => {
+const TrackerInput = ({
+  profileData,
+  formArray,
+  setFormArray,
+  previousWorkout,
+  setPreviousWorkout,
+}) => {
   const [workout, setWorkout] = useState("");
   const [type, setType] = useState("");
   const [sets, setSets] = useState(0);
@@ -17,10 +23,31 @@ const TrackerInput = ({ profileData }) => {
   const [isCardio, setIsCardio] = useState(false);
   const [isStrength, setIsStrength] = useState(false);
   const [formData, setFormData] = useState({});
-  const [formArray, setFormArray] = useState([]);
+
   const [newWorkout, setNewWorkout] = useState(true);
 
   const newWorkoutRef = useRef(null);
+
+  const handlePreviousWorkout = () => {
+    previousWorkout.forEach((exercise) => {
+      const newFormData = {
+        workout: exercise.workout,
+        type: exercise.type,
+        sets: exercise.sets,
+        reps: exercise.reps,
+        weight: exercise.weight,
+        distance: exercise.distance,
+        time: exercise.time,
+        calories: exercise.calories,
+        notes: exercise.notes,
+        date: new Date().toLocaleDateString(),
+        time: new Date().toLocaleTimeString(),
+      };
+      setFormData(newFormData);
+      setFormArray([...formArray, newFormData]);
+    });
+    setNewWorkout(false);
+  };
 
   const handleFormSubmit = (event) => {
     event.preventDefault();
@@ -49,7 +76,19 @@ const TrackerInput = ({ profileData }) => {
     setNotes("");
   };
 
-  const { auth } = useContext(AuthContext);
+  const handleWorkoutSubmit = (event) => {
+    event.preventDefault();
+    console.log(formArray);
+    axios.post("/users/workouts", formArray, {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+    });
+    setNewWorkout(true);
+    setFormArray([]);
+  };
+
   const firstName =
     profileData && profileData.name ? profileData.name.split(" ")[0] : "";
 
