@@ -50,7 +50,8 @@ const TrackerInput = ({ profileData }) => {
   };
 
   const { auth } = useContext(AuthContext);
-  const name = profileData.name.split(" ")[0];
+  const firstName =
+    profileData && profileData.name ? profileData.name.split(" ")[0] : "";
 
   const handleWorkoutChange = (event) => {
     const workoutType = event.target.value;
@@ -112,7 +113,7 @@ const TrackerInput = ({ profileData }) => {
   return (
     <div className="grid grid-cols-1 max-w-[1244px] mx-auto h-100 p-4 border-[2px] border-primary my-14 overflow-auto shadow-lg shadow-accent-dark rounded-lg bg-bg">
       <h1 className="text-4xl font-bold text-text mx-auto py-2 border-b-2 border-accent-dark">
-        Welcome back {name}
+        Welcome back {firstName}
       </h1>
       <h2 className="text-2xl font-semibold text-secondary text-center mb-4 pt-4">
         Add a{" "}

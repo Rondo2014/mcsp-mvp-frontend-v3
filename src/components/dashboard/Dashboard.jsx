@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Tracker from "./Tracker";
 import TrackerInput from "./TrackerInput";
-import ProfileCard from "./ProfileCard.jsx";
+import ProfileCard from "./ProfileCard";
 import axios from "../../api/axios";
 
 const Dashboard = () => {
@@ -9,12 +9,16 @@ const Dashboard = () => {
 
   useEffect(() => {
     async function fetchData() {
-      const response = await axios.get("/users/:id", {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
-        },
-      });
-      setProfileData(response.data);
+      try {
+        const response = await axios.get("/users/:id", {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        });
+        setProfileData(response.data);
+      } catch (error) {
+        console.log(error);
+      }
     }
     fetchData();
   }, []);
@@ -39,12 +43,11 @@ const Dashboard = () => {
         handleWorkoutSubmit={handleWorkoutSubmit}
         profileData={profileData}
       />
-      <Tracker workoutData={workoutData} setWorkoutData={setWorkoutData}>
-        <ProfileCard
-          setProfileData={setProfileData}
-          profileData={profileData}
-        />
-      </Tracker>
+      <Tracker
+        workoutData={workoutData}
+        setWorkoutData={setWorkoutData}
+        profileData={profileData}
+      />
     </>
   );
 };

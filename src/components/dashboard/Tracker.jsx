@@ -3,9 +3,8 @@ import axios from "../../api/axios.js";
 import List from "./List.jsx";
 import ProfileCard from "./ProfileCard.jsx";
 
-const Tracker = ({ workoutData, setWorkoutData }) => {
+const Tracker = ({ workoutData, setWorkoutData, profileData }) => {
   const [workoutClicked, setWorkoutClicked] = useState(null);
-
   useEffect(() => {
     axios
       .get("/users/workouts", {
@@ -66,7 +65,7 @@ const Tracker = ({ workoutData, setWorkoutData }) => {
           </div>
         )}
       </div>
-      <ProfileCard />
+      <ProfileCard profileData={profileData} />
     </div>
   );
 };
