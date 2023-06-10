@@ -11,7 +11,7 @@ import Signup from "./Signup";
 import Dashboard from "./dashboard/Dashboard";
 import { Routes, Route, useLocation } from "react-router-dom";
 
-function App() {
+function App({ Draggable }) {
   const location = useLocation();
   return (
     <>

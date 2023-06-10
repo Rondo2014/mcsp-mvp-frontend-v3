@@ -2,10 +2,9 @@ import React, { useState, useContext, useRef } from "react";
 import { TRACKERMENU } from "./trackerMenu";
 import AuthContext from "../../context/AuthProvider";
 import TrackerSubmit from "./TrackerSubmit";
-import axios from "../../api/axios";
 import { Close, Done } from "@mui/icons-material";
 
-const TrackerInput = () => {
+const TrackerInput = ({ profileData }) => {
   const [workout, setWorkout] = useState("");
   const [type, setType] = useState("");
   const [sets, setSets] = useState(0);
@@ -51,7 +50,7 @@ const TrackerInput = () => {
   };
 
   const { auth } = useContext(AuthContext);
-  const { username } = auth;
+  const name = profileData.name.split(" ")[0];
 
   const handleWorkoutChange = (event) => {
     const workoutType = event.target.value;
@@ -101,18 +100,6 @@ const TrackerInput = () => {
     newWorkoutRef.current.value = "";
   };
 
-  const handleWorkoutSubmit = (event) => {
-    event.preventDefault();
-    console.log(formArray);
-    axios.post("/users/workouts", formArray, {
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${localStorage.getItem("token")}`,
-      },
-    });
-    setNewWorkout(true);
-    setFormArray([]);
-  };
   const handleNewWorkoutSubmit = (event) => {
     event.preventDefault();
     const newWorkout = newWorkoutRef.current.value;
@@ -125,7 +112,7 @@ const TrackerInput = () => {
   return (
     <div className="grid grid-cols-1 max-w-[1244px] mx-auto h-100 p-4 border-[2px] border-primary my-14 overflow-auto shadow-lg shadow-accent-dark rounded-lg bg-bg">
       <h1 className="text-4xl font-bold text-text mx-auto py-2 border-b-2 border-accent-dark">
-        Welcome back {username}
+        Welcome back {name}
       </h1>
       <h2 className="text-2xl font-semibold text-secondary text-center mb-4 pt-4">
         Add a{" "}
