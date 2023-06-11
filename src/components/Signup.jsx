@@ -4,6 +4,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import { useNavigate, Link } from "react-router-dom";
 import axios from "../api/axios.js";
 import AuthContext from "../context/AuthProvider.jsx";
+import { motion } from "framer-motion";
 
 const SIGNUP_URL = "/users/signup";
 
@@ -74,7 +75,12 @@ const Signup = () => {
       ) : (
         <>
           <div className="grid grid-cols-1 sm:grid-cols-2 h-screen w-full max-w-[1244px] mx-auto my-20">
-            <div className="flex flex-col justify-center">
+            <motion.div
+              animate={{ x: 0, opacity: 1 }}
+              initial={{ x: -100, opacity: 0 }}
+              transition={{ duration: 1, delay: 0.2 }}
+              className="flex flex-col justify-center"
+            >
               <form
                 className="flex flex-col text-white max-w-[500px] w-full mx-auto p-8 rounded-lg  border-[1px] border-accent shadow-lg shadow-accent group focus-within:group-[shadow-primary]:"
                 onSubmit={handleSubmit}
@@ -200,15 +206,20 @@ const Signup = () => {
                   Already have an account?
                 </Link>
               </form>
-            </div>
+            </motion.div>
 
-            <div className="hidden sm:block">
+            <motion.div
+              animate={{ x: 0, opacity: 1 }}
+              initial={{ x: 100, opacity: 0 }}
+              transition={{ duration: 1, delay: 0.2 }}
+              className="hidden sm:block border-l-2 border-accent"
+            >
               <img
                 src="https://c0.wallpaperflare.com/preview/773/46/359/woman-female-bar-strong.jpg"
                 alt="login"
                 className="w-full h-full object-cover"
               />
-            </div>
+            </motion.div>
           </div>
         </>
       )}

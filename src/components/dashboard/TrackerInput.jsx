@@ -1,8 +1,9 @@
-import React, { useState, useContext, useRef } from "react";
+import React, { useState, useContext, useRef, useEffect } from "react";
 import { TRACKERMENU } from "./trackerMenu";
 import axios from "../../api/axios";
 import TrackerSubmit from "./TrackerSubmit";
 import { Close, Done } from "@mui/icons-material";
+import { motion, useAnimate } from "framer-motion";
 
 const TrackerInput = ({
   profileData,
@@ -23,35 +24,16 @@ const TrackerInput = ({
   const [isCardio, setIsCardio] = useState(false);
   const [isStrength, setIsStrength] = useState(false);
   const [formData, setFormData] = useState({});
+  const [exitAnimation, setExitAnimation] = useState(false);
 
   const [newWorkout, setNewWorkout] = useState(true);
 
   const newWorkoutRef = useRef(null);
 
-  const handlePreviousWorkout = () => {
-    previousWorkout.forEach((exercise) => {
-      const newFormData = {
-        workout: exercise.workout,
-        type: exercise.type,
-        sets: exercise.sets,
-        reps: exercise.reps,
-        weight: exercise.weight,
-        distance: exercise.distance,
-        time: exercise.time,
-        calories: exercise.calories,
-        notes: exercise.notes,
-        date: new Date().toLocaleDateString(),
-        time: new Date().toLocaleTimeString(),
-      };
-      setFormData(newFormData);
-      setFormArray([...formArray, newFormData]);
-    });
-    setNewWorkout(false);
-  };
-
   const handleFormSubmit = (event) => {
     event.preventDefault();
     const newFormData = {
+      id: "New workout card" + formArray.length + 1,
       workout,
       type,
       sets,
@@ -85,7 +67,6 @@ const TrackerInput = ({
         Authorization: `Bearer ${localStorage.getItem("token")}`,
       },
     });
-    setNewWorkout(true);
     setFormArray([]);
   };
 
@@ -150,7 +131,12 @@ const TrackerInput = ({
   };
 
   return (
-    <div className="grid grid-cols-1 max-w-[1244px] mx-auto h-100 p-4 border-[2px] border-primary my-14 overflow-auto shadow-lg shadow-accent-dark rounded-lg bg-bg">
+    <motion.div
+      animate={{ y: 0, opacity: 1 }}
+      initial={{ y: -150, opacity: 0 }}
+      transition={{ duration: 1, delay: 0.2 }}
+      className="grid grid-cols-1 max-w-[1244px] mx-auto h-100 p-4 border-[2px] border-primary my-14 overflow-auto shadow-lg shadow-accent-dark rounded-lg bg-bg"
+    >
       <h1 className="text-4xl font-bold text-text mx-auto py-2 border-b-2 border-accent-dark">
         Welcome back {firstName}
       </h1>
@@ -429,7 +415,14 @@ const TrackerInput = ({
           </div>
         </form>
       )}
-      {formArray.length > 0 && <TrackerSubmit formArray={formArray} />}
+      {formArray.length > 0 && (
+        <TrackerSubmit
+          formArray={formArray}
+          setFormArray={setFormArray}
+          exitAnimation={exitAnimation}
+          setExitAnimation={setExitAnimation}
+        />
+      )}
       {formArray.length > 1 && (
         <button
           type="submit"
@@ -439,7 +432,7 @@ const TrackerInput = ({
           Submit workout
         </button>
       )}
-    </div>
+    </motion.div>
   );
 };
 

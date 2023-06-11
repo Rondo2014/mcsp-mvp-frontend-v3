@@ -1,17 +1,22 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
 
 const ProfileCard = ({ profileData }) => {
   const firstName =
     profileData && profileData.name ? profileData.name.split(" ")[0] : "";
-  console.log(profileData);
-
   const birthYear = new Date(profileData.date_of_birth).getFullYear();
   const currentYear = new Date().getFullYear();
   const age = currentYear - birthYear;
 
   return (
-    <div className="text-white w-full mx-auto p-10 m-4 border-2 border-accent-dark rounded-lg ml-12 bg-bg-dark md:max-h-[600px]">
+    <motion.div
+      animate={{ x: 0, opacity: 1 }}
+      initial={{ x: 150, opacity: 0 }}
+      exit={{ x: 150, opacity: 0, delay: 0.5 }}
+      transition={{ duration: 1, delay: 0.2 }}
+      className="text-white w-full mx-auto p-10 m-4 border-2 border-accent-dark rounded-lg ml-12 bg-bg-dark md:max-h-[600px]"
+    >
       <div className="flex justify-center mx-auto w-full">
         <img
           src="https://www.vhv.rs/dpng/d/436-4363443_view-user-icon-png-font-awesome-user-circle.png"
@@ -62,7 +67,7 @@ const ProfileCard = ({ profileData }) => {
           </Link>
         </h2>
       </div>
-    </div>
+    </motion.div>
   );
 };
 

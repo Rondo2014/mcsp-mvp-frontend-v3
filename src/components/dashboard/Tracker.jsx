@@ -24,10 +24,8 @@ const Tracker = ({
       .then((res) => {
         const workoutData = res.data;
         setWorkoutData(workoutData);
-        console.log(workoutData);
-        console.log(typeof workoutData[0].date[0]);
       });
-  }, []);
+  }, [formArray]);
 
   const handleClick = (id) => {
     if (workoutClicked === id) {
@@ -41,7 +39,13 @@ const Tracker = ({
 
   return (
     <div className="w-full max-w-[1244px] flex flex-col md:flex md:flex-row md:flex-grow-1 mx-auto">
-      <div className="md:flex md:w-7/12 md:full">
+      <motion.div
+        animate={{ x: 0, opacity: 1 }}
+        initial={{ x: -150, opacity: 0 }}
+        exit={{ x: -150, opacity: 0, delay: 0.5 }}
+        transition={{ duration: 1, delay: 0.2 }}
+        className="md:flex md:w-7/12 md:full"
+      >
         <ul className="flex flex-col no-scrollbar overflow-y-auto h-[600px]">
           {workoutData.map((workout, index) => {
             const date = new Date(workout.date[0]);
@@ -90,7 +94,7 @@ const Tracker = ({
             })}
           </motion.div>
         )}
-      </div>
+      </motion.div>
       <ProfileCard profileData={profileData} />
     </div>
   );

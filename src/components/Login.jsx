@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { useState, useRef, useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import AuthContext from "../context/AuthProvider.jsx";
+import { motion } from "framer-motion";
 
 const Login = () => {
   const { setAuth, handleLogin } = useContext(AuthContext);
@@ -61,15 +62,25 @@ const Login = () => {
       ) : (
         <>
           <div className="grid grid-cols-1 sm:grid-cols-2 h-screen w-full max-w-[1244px] mx-auto">
-            <div className="hidden sm:block">
+            <motion.div
+              animate={{ x: 0, opacity: 1 }}
+              initial={{ x: -150, opacity: 0 }}
+              transition={{ duration: 1, delay: 0.2 }}
+              className="hidden sm:block"
+            >
               <img
                 src="https://staticc.sportskeeda.com/editor/2023/05/cbebe-16849517175253-1920.jpg"
                 alt="login"
                 className="w-full h-full object-cover"
               />
-            </div>
+            </motion.div>
 
-            <div className="flex flex-col justify-center">
+            <motion.div
+              animate={{ x: 0, opacity: 1 }}
+              initial={{ x: 150, opacity: 0 }}
+              transition={{ duration: 1, delay: 0.2 }}
+              className="flex flex-col justify-center border-l-2 border-accent"
+            >
               <form
                 onSubmit={handleSubmit}
                 className="text-white max-w-[400px] w-full mx-auto p-8 rounded-lg  border-[1px] border-accent shadow-lg shadow-accent group focus-within:group-[shadow-primary]:"
@@ -136,7 +147,7 @@ const Login = () => {
                   today!
                 </p>
               </form>
-            </div>
+            </motion.div>
           </div>
         </>
       )}

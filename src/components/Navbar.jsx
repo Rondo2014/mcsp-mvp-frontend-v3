@@ -26,7 +26,7 @@ function Navbar() {
             Logout
           </button>
         ) : (
-          <Link to="/login">
+          <Link onClick={toggleMenu} to="/login">
             <button className="bg-accent-dark text-white py-2 px-6 rounded-lg md:ml-8 hover:bg-text hover:text-lg transition-all ease-in ml-7">
               Login/Signup
             </button>
@@ -93,6 +93,7 @@ function Navbar() {
                   <Link
                     to={link.page}
                     className="text-white hover:text-text transition-all ease-in"
+                    onClick={toggleMenu}
                   >
                     {link.name}
                   </Link>
@@ -103,6 +104,7 @@ function Navbar() {
                   <Link
                     to={link.page}
                     className="text-white hover:text-text transition-all ease-in"
+                    onClick={toggleMenu}
                   >
                     {link.name}
                   </Link>
