@@ -15,8 +15,9 @@ const TrackerSubmit = ({
   };
   const handleDeleteClick = (index) => {
     const newArray = [...formArray];
-    newArray.splice(index, 1);
+    newArray.splice(index + 1, 1);
     setFormArray(newArray);
+    setEditableIndex(null);
   };
   const handleInputChange = (e, index) => {
     const { name, value } = e.target;
