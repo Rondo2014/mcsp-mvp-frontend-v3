@@ -25,6 +25,7 @@ const Dashboard = () => {
   }, []);
 
   const [workoutData, setWorkoutData] = useState([]);
+
   return (
     <>
       <TrackerInput

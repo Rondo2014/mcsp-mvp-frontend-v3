@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Add } from "@mui/icons-material";
 
-const List = ({ workout, formArray, setFormArray }) => {
+const List = ({ workout, formArray, setFormArray, isClicked }) => {
   const handleAddExercise = (index) => {
-    console.log(index);
     const newExercise = {
       id: workout.id + " at " + index,
       workout: workout.workout[index],
@@ -27,10 +26,14 @@ const List = ({ workout, formArray, setFormArray }) => {
         {workout.name}
       </h1>
       {workout.type.map((exercise, index) => {
+        const delay = `${index * 150}ms`;
         return (
           <div
             key={`exercise ${workout.id}-${index}`}
-            className="bg-bg rounded-lg"
+            className={`bg-bg rounded-lg transition-all duration-500 ease-in-out ${
+              !isClicked ? "opacity-0 translate-x-[-11rem]" : "opacity-100"
+            }`}
+            style={{ transitionDelay: delay }}
           >
             <Add
               className="hover:scale-105 hover:text-text transition-all duration-300 ease-in-out"

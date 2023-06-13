@@ -14,6 +14,7 @@ const Tracker = ({
   setPreviousWorkout,
 }) => {
   const [workoutClicked, setWorkoutClicked] = useState(false);
+  const [isClicked, setIsClicked] = useState(true);
   useEffect(() => {
     axios
       .get("/users/workouts", {
@@ -29,10 +30,14 @@ const Tracker = ({
 
   const handleClick = (id) => {
     if (workoutClicked === id) {
-      return setWorkoutClicked(false);
+      setIsClicked(false);
+      setTimeout(() => {
+        return setWorkoutClicked(false);
+      }, 700);
+    } else {
+      setWorkoutClicked(id);
+      setIsClicked(true);
     }
-    setWorkoutClicked(!workoutClicked);
-    setWorkoutClicked(id);
   };
 
   const forbiddenKeys = ["id", "name", "type", "date", "time", "user_id"];
@@ -84,6 +89,7 @@ const Tracker = ({
                       setFormArray={setFormArray}
                       previousWorkout={previousWorkout}
                       setPreviousWorkout={setPreviousWorkout}
+                      isClicked={isClicked}
                     />
                   </>
                 );

@@ -3,7 +3,7 @@ import { TRACKERMENU } from "./trackerMenu";
 import axios from "../../api/axios";
 import TrackerSubmit from "./TrackerSubmit";
 import { Close, Done } from "@mui/icons-material";
-import { motion, useAnimate } from "framer-motion";
+import { motion } from "framer-motion";
 
 const TrackerInput = ({ profileData, formArray, setFormArray }) => {
   const [workout, setWorkout] = useState("");
@@ -18,7 +18,6 @@ const TrackerInput = ({ profileData, formArray, setFormArray }) => {
   const [isCardio, setIsCardio] = useState(false);
   const [isStrength, setIsStrength] = useState(false);
   const [formData, setFormData] = useState({});
-  const [exitAnimation, setExitAnimation] = useState(false);
 
   const [newWorkout, setNewWorkout] = useState(true);
 
@@ -54,13 +53,14 @@ const TrackerInput = ({ profileData, formArray, setFormArray }) => {
 
   const handleWorkoutSubmit = (event) => {
     event.preventDefault();
-    console.log(formArray);
+
     axios.post("/users/workouts", formArray, {
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${localStorage.getItem("token")}`,
       },
     });
+
     handleNewWorkout();
   };
 
@@ -109,7 +109,6 @@ const TrackerInput = ({ profileData, formArray, setFormArray }) => {
   };
 
   const handleNewWorkout = () => {
-    console.log("new workout");
     newWorkoutRef.current.value = null;
     newWorkoutRef.current.focus();
     setNewWorkout(true);
@@ -411,12 +410,7 @@ const TrackerInput = ({ profileData, formArray, setFormArray }) => {
         </form>
       )}
       {formArray.length > 0 && (
-        <TrackerSubmit
-          formArray={formArray}
-          setFormArray={setFormArray}
-          exitAnimation={exitAnimation}
-          setExitAnimation={setExitAnimation}
-        />
+        <TrackerSubmit formArray={formArray} setFormArray={setFormArray} />
       )}
       {formArray.length > 1 && (
         <button
