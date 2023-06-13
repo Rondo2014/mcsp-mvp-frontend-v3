@@ -5,13 +5,7 @@ import TrackerSubmit from "./TrackerSubmit";
 import { Close, Done } from "@mui/icons-material";
 import { motion, useAnimate } from "framer-motion";
 
-const TrackerInput = ({
-  profileData,
-  formArray,
-  setFormArray,
-  previousWorkout,
-  setPreviousWorkout,
-}) => {
+const TrackerInput = ({ profileData, formArray, setFormArray }) => {
   const [workout, setWorkout] = useState("");
   const [type, setType] = useState("");
   const [sets, setSets] = useState(0);
@@ -67,7 +61,7 @@ const TrackerInput = ({
         Authorization: `Bearer ${localStorage.getItem("token")}`,
       },
     });
-    setFormArray([]);
+    handleNewWorkout();
   };
 
   const firstName =
@@ -115,10 +109,11 @@ const TrackerInput = ({
   };
 
   const handleNewWorkout = () => {
+    console.log("new workout");
+    newWorkoutRef.current.value = null;
+    newWorkoutRef.current.focus();
     setNewWorkout(true);
     setFormArray([]);
-    newWorkoutRef.current.focus();
-    newWorkoutRef.current.value = "";
   };
 
   const handleNewWorkoutSubmit = (event) => {
@@ -126,7 +121,6 @@ const TrackerInput = ({
     const newWorkout = newWorkoutRef.current.value;
     if (newWorkout === "") return;
     formArray.push(newWorkout);
-    console.log(formArray);
     setNewWorkout(false);
   };
 
@@ -184,6 +178,7 @@ const TrackerInput = ({
               className="rounded-lg bg-bg-dark border-secondary border-[1px] p-2 w-full md:w-60 text-text text-opacity-50 text-left"
               type="text"
               placeholder="Workout name"
+              ref={newWorkoutRef}
               disabled
             />
             <Close

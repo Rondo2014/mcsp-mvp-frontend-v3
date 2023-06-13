@@ -39,7 +39,7 @@ const TrackerSubmit = ({
               initial={{ y: -50, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ duration: 0.5 }}
-              key={key}
+              key={`List-${key}`}
               className="border-box w-auto shadow-xl shadow-secondary hover:shadow-accent hover:shadow-2xl hover:scale-105 flex flex-row p-4 my-4 rounded-lg transition-all duration-500 ease-in-out bg-bg-dark m-4"
             >
               <div>

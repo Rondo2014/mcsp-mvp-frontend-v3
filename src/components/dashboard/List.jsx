@@ -2,11 +2,10 @@ import React, { useEffect, useState } from "react";
 import { Add } from "@mui/icons-material";
 
 const List = ({ workout, formArray, setFormArray }) => {
-  console.log(workout);
-
   const handleAddExercise = (index) => {
     console.log(index);
     const newExercise = {
+      id: workout.id + " at " + index,
       workout: workout.workout[index],
       type: workout.type[index],
       sets: workout.sets[index],
@@ -17,14 +16,13 @@ const List = ({ workout, formArray, setFormArray }) => {
       date: new Date().toLocaleDateString(),
       time: new Date().toLocaleTimeString(),
     };
-    console.log(newExercise);
     if (formArray.length > 0) {
       setFormArray([...formArray, newExercise]);
     }
   };
 
   return (
-    <div>
+    <div key={workout.id}>
       <h1 className="col-span-2 text-xl font-bold text-accent transition-all duration-500 ease-in-out">
         {workout.name}
       </h1>

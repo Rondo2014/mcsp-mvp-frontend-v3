@@ -52,7 +52,7 @@ const Tracker = ({
             const formattedDate = date.toLocaleDateString();
             return (
               <li
-                key={workout.id}
+                key={`Workout-${workout.id}`}
                 className="group grid grid-cols-2 gap-2 text-white py-3 border-b-2 border-accent hover:bg-accent-dark transition-all duration-500 ease-in-out my-2 rounded-md bg-bg p-2 cursor-pointer hover:scale-105"
                 onClick={() => handleClick(workout.id)}
               >
@@ -79,7 +79,6 @@ const Tracker = ({
                 return (
                   <>
                     <List
-                      key={workout.id}
                       workout={workout}
                       formArray={formArray}
                       setFormArray={setFormArray}
